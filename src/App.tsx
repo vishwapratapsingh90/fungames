@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
+import Button from "./components/Button";
 import SubSection from "./components/SubSection";
 
 function App() {
@@ -12,10 +13,21 @@ function App() {
     "Bangalore",
   ];
   const [selectedItem, setSelectedItem] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   return (
     <div>
-      <Alert message="This is an alert message!" />
+      {showAlert && (
+        <Alert
+          message="This is an alert message!"
+          onClose={() => setShowAlert(false)}
+        />
+      )}
+      <Button
+        label="Click Me"
+        variant="primary"
+        onClick={() => setShowAlert(true)}
+      />
       <ListGroup
         items={items}
         title="Cities"
